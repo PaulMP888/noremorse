@@ -1,0 +1,23 @@
+<% if @category.errors.any? %>
+	<div class='alert alert-danger'>
+		<h5><%= t('common.errors') %></h5>
+		<ul>
+			<% @category.errors.full_messages.each do |message| %>
+			<li><%= message %></li>
+			<% end %>
+		</ul>
+	</div>
+<% end %>
+
+<%= form_for @category do |f| %>
+	<div class='form-controll'>
+		<%= f.label :name %>
+		<%= f.text_field :name %>
+	</div>
+
+
+	<div class='form-group'>
+		<%= f.submit 'Submit', action: @category.new_record? ? 'Create' : 'Edit', class: 'btn btn-primary' %>
+		<%= link_to 'Cancel', :back, class: 'btn btn-outline-secondary' %>
+	</div>
+<% end %>
