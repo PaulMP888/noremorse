@@ -1,8 +1,9 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
 
-  def new
-  	@category = Category.new
+ def new
+    @category = Category.new
+    @categories = Category.all.order(:name)
   end
 
 
@@ -20,21 +21,23 @@ class CategoriesController < ApplicationController
   	if @category.save
   		redirect_to categories_path, success: 'Success'
   	else
+  		@categories = Category.all.order(:name)
   		flash[:danger] = 'Failure'
   		render :new
   	end
   end
 
   def edit
-  	
+  	 @categories = Category.where("id != #{@category.id}").order(:name)
   end
 
   def update
   	if @category.update_attributes(category_params)
   	redirect_to categories_path, success: 'Success'
   else
+  	@categories = Category.all.order(:name)
   	flash[:danger] = 'Failure'
-  		render :new
+  	render :new
   	end
   end
 
