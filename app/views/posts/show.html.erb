@@ -5,3 +5,5 @@
 
 <%= image_tag @post.image.url(:large), class: 'img-show' if @post.image? %>
 <p><%= @post.body %></p>
+
+<%= render 'disqus' %>
