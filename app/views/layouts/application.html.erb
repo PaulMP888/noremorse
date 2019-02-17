@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Project1</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Project 1</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="<%= posts_path %>">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav pull-xs-right">
+      <% if user_signed_in?%>
+      <%= link_to 'Exit', destroy_user_session_path, method: :delete, class: 'nav-link' %>
+      <% else %>
+      <li class="nav-item active">
+        <%= link_to 'Log in', new_user_session_path, class: 'nav-link' %>
+        <li class="nav-item active">
+        <%= link_to 'Registration',  new_user_registration_path, class: 'nav-link' %>
+      </li>
+      <% end %>
+    </ul>
+    <%# <%= link_to 'New post', new_post_path, class: 'btn btn-outline-pimary pull-xs-right'%>
+  </div>
+</nav>
+    </div>
+
+    <div class="container">
+      <div class='row'>
+        <dir class='col-md-12'>
+          <% flash.each do |name, message| %>
+          <div class='alert <%= bootstrap_class_for(name) %>'>
+            <button class='close' data-dismiss='alert'>&times;</button>
+            <%= message %>
+          </div>
+          <% end %>
+        </dir>
+      </div>
+      <%= yield %>
+    </div>
+  </body>
+</html>
