@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Project1</title>
+    <title>Waha40kFanBase</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -12,7 +12,7 @@
   <body>
     <div class="container">
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Project 1</a>
+  <a class="navbar-brand" href="#">Warhammer 40k FanBase</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -23,10 +23,10 @@
         <a class="nav-link" href="<%= posts_path %>">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
+        <a class="nav-link" href="#"></a>
       </li>
     </ul>
-
+<%= link_to 'New post', new_post_path, class: 'btn btn-outline-pimary pull-xs-left'%>
     <ul class="navbar-nav pull-xs-right">
       <% if user_signed_in?%>
       <%= link_to 'Exit', destroy_user_session_path, method: :delete, class: 'nav-link' %>
@@ -38,7 +38,6 @@
       </li>
       <% end %>
     </ul>
-    <%# <%= link_to 'New post', new_post_path, class: 'btn btn-outline-pimary pull-xs-right'%>
   </div>
 </nav>
     </div>
@@ -60,7 +59,6 @@
           <%= yield %>
         </div>
         <div class="col-md-4">
-          <% render 'shared/submenu' %>
           <div class='tag_cloud'>
             <% tag_cloud(Tag.counts, %w{tag1 tag2 tag3 tag4 tag5}) do |tag, css_class| %>
           <%= link_to tag.name, tag_path(tag.name), class: css_class %>
